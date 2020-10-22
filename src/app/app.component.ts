@@ -7,6 +7,7 @@ import { User } from './_models';
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
     currentUser: User;
+    homeUrl = 'http://wwwapps.biz/';
 
     constructor(
         private router: Router,
