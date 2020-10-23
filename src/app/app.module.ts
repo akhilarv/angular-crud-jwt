@@ -10,8 +10,8 @@ import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routing';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
+import { HomeComponent } from './_components/home';
+import { LoginComponent } from './_components/login';
 
 @NgModule({
     imports: [
