@@ -15,6 +15,15 @@ const routes: Routes = [
         path: 'todo-detail',
         loadChildren: () => import('./_components/todo/todo-detail/todo-detail.module').then(mod => mod.TodoDetailModule)
     },
+    {
+        path: 'birthday-list',
+        loadChildren: () => import('./_components/birthday/birthday-list/birthday-list.module').then(mod => mod.BirthdayListModule)
+    },
+    {
+        path: 'birthday-detail',
+        loadChildren: () => import('./_components/birthday/birthday-detail/birthday-detail.module').then(mod => mod.BirthdayDetailModule)
+    },
+    
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
