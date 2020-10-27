@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 import { Birthday } from '../_models/birthday';
 
 @Injectable()
@@ -7,7 +9,7 @@ export class BirthdayService {
     public birthdays: Birthday[] = [];
     constructor() { }
   
-    getAllBirthdays(): Birthday[] {
+    getAllBirthdays(): Observable<Birthday[]> {
 
         if(localStorage.getItem('birthdayData') !== null){ 
             this.birthdays = JSON.parse(localStorage.getItem('birthdayData'));
@@ -33,7 +35,7 @@ export class BirthdayService {
             this.birthdays = JSON.parse(localStorage.getItem('birthdayData'));
             console.log('First');
         }       
-        return this.birthdays;
+        return of(this.birthdays);
     }
     
     getBirthdayById(id: number): Birthday {
@@ -44,8 +46,8 @@ export class BirthdayService {
           .pop();
     }
   
-    updateBirthdayById(birthday): Birthday {
-        if (birthday.id === 0) {                    
+    updateBirthdayById(birthday): Observable<Birthday> {
+        if (birthday.id === 0) {             
             var birthdayArray = JSON.parse(localStorage.getItem('birthdayData'));
             var birthdayid = birthdayArray.length;
                 birthday.id = ++birthdayid;
@@ -60,7 +62,7 @@ export class BirthdayService {
                 }
             }
         }
-        return birthday;
+        return of(birthday);
     }
     
     deleteBirthdayDetail(id) {
