@@ -15,8 +15,13 @@ export class BirthdayListComponent implements OnInit {
     ngOnInit() {
         this.loadAllBirthdayList();    
     }
+    
     loadAllBirthdayList() {
-        this.birthdays = this.birthdayService.getAllBirthdays();
+        this.birthdayService.getAllBirthdays().subscribe(
+            birthdays => { 
+                this.birthdays = birthdays;
+            }
+        );
     }
     
     onClickEditBirthdayDetail(id) {

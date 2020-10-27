@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
 import { Todo } from '../_models/todo';
 
 @Injectable()
 export class TodoService {
 
     public todos: Todo[] = [];
-    constructor() { }
-  
-    getAllTodos(): Todo[] {
 
-        if(localStorage.getItem('localData') !== null){ 
+    constructor() { }
+    
+    getAllTodos(): Observable<Todo[]> {
+
+        if (localStorage.getItem('localData') !== null) {
             this.todos = JSON.parse(localStorage.getItem('localData'));
             console.log('Second');
         } else {
@@ -38,24 +41,24 @@ export class TodoService {
             localStorage.setItem('localData', JSON.stringify(todoArrayData));
             this.todos = JSON.parse(localStorage.getItem('localData'));
             console.log('First');
-        }       
-        return this.todos;
+        }
+        return of(this.todos);
     }
-    
+
     getTodoById(id: number): Todo {
-        var todoArray = JSON.parse(localStorage.getItem('localData'));       
+        var todoArray = JSON.parse(localStorage.getItem('localData'));
         console.log(todoArray);
         return todoArray
-          .filter(todo => todo.id === id)
-          .pop();
+            .filter(todo => todo.id === id)
+            .pop();
     }
-  
-    updateTodoById(todo): Todo {
-        if (todo.id === 0) {                    
+
+    updateTodoById(todo): Observable<Todo> {
+        if (todo.id === 0) {
             var todoArray = JSON.parse(localStorage.getItem('localData'));
             var todoid = todoArray.length;
-                todo.id = ++todoid;
-                todoArray.push(todo);
+            todo.id = ++todoid;
+            todoArray.push(todo);
             localStorage.setItem('localData', JSON.stringify(todoArray));
         } else {
             var todoSaveArray = JSON.parse(localStorage.getItem('localData'));
@@ -66,16 +69,16 @@ export class TodoService {
                 }
             }
         }
-        return todo;
+        return of(todo);
     }
-    
+
     deleteTodoDetail(id) {
-       var todoArray = JSON.parse(localStorage.getItem('localData'));
+        var todoArray = JSON.parse(localStorage.getItem('localData'));
         for (var i in todoArray) {
             if (todoArray[i].id === id) {
                 todoArray.splice(i, 1);
-                localStorage.setItem('localData', JSON.stringify(todoArray));  
+                localStorage.setItem('localData', JSON.stringify(todoArray));
             }
-        }    
-    };    
+        }
+    };
 }

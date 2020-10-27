@@ -10,27 +10,29 @@ import { TodoService } from '../../../_services/todo.service';
 })
 export class TodoListComponent implements OnInit {
     public todos: Todo[] = [];
-    constructor( private router: Router, private todoService: TodoService ) { }
-    
+    constructor(private router: Router, private todoService: TodoService) { }
+
     ngOnInit() {
-        this.loadAllTodoList();    
-    }
-    loadAllTodoList() {
-        this.todos = this.todoService.getAllTodos();
+        this.loadAllTodoList();
     }
     
+    loadAllTodoList() {
+        this.todoService.getAllTodos().subscribe(todos => {
+            this.todos = todos;
+        });
+    }
+
     onClickEditTodoDetail(id) {
         console.log(id);
-        this.router.navigate(['/todo-detail'], {queryParams: {id: id}});
+        this.router.navigate(['/todo-detail'], { queryParams: { id: id } });
     }
-    
+
     onClickAddTodo() {
         this.router.navigate(['/todo-detail']);
     }
-    
+
     onClickTodoDelete(id) {
         this.todoService.deleteTodoDetail(id);
-        this.loadAllTodoList(); 
+        this.loadAllTodoList();
     }
-
 }
