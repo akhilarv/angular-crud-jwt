@@ -1,21 +1,6 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-link" routerLink="/todo-list">Todo List</a>
-        <a class="nav-link" routerLink="/birthday-list">Birthday</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-    </div>
-</nav>
-
+﻿<app-header></app-header>
 <!-- main app container -->
 <div class="container">
     <router-outlet></router-outlet>
 </div>
-
-<!-- credits -->
-<div class="text-center mt-4">
-    <p>
-        <a href="{{homeUrl}}" target="_top">wwwapps.biz</a>
-    </p>
-</div>
+<app-footer></app-footer>
