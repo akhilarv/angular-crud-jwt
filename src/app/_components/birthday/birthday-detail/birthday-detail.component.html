@@ -1,0 +1,58 @@
+    
+    <div class="col-sm-12 pt-5">
+        <div class="col-md-12">
+            <form id="birthdayForm" #birthdayForm="ngForm" (ngSubmit)="onBirthdaySubmitForm(birthdayForm);" novalidat>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">{{mode}} Birthday</legend>    
+                    <div class="form-group row">
+                        <label for="firstName" class="col-md-2 col-form-label">First Name</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" #firstName="ngModel" name="firstName" [(ngModel)]="birthdayDetail.firstName" placeholder="First Name" required>
+                            <div [hidden]="firstName.valid || (firstName.pristine && !birthdayForm.submitted)" class="text-danger">
+                              First name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastName" class="col-md-2 col-form-label">Last Name</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" #lastName="ngModel" name="lastName" [(ngModel)]="birthdayDetail.lastName" placeholder="Last Name" required>
+                            <div [hidden]="lastName.valid || (lastName.pristine && !birthdayForm.submitted)" class="text-danger">
+                              Last name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="dob" class="col-md-2 col-form-label">DOB</label>
+                        <div class="col-md-5">
+                            <input type="date" class="form-control" #dob="ngModel" name="dob" [(ngModel)]="birthdayDetail.dob" placeholder="DOB" required>
+                            <div *ngIf="dob.invalid && (dob.dirty || dob.touched || birthdayForm.submitted)" class="text-danger">
+                                <div *ngIf="dob.errors.required"> DOB is required. </div>                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="relation" class="col-md-2 col-form-label">Relation</label>
+                        <div class="col-md-5">
+                            <select  #relation="ngModel" name="relation" [(ngModel)]="birthdayDetail.relation" required aria-placeholder="Select Relation">
+                                <option value="Relative">Relative</option>
+                                <option value="Friend">Friend</option>
+                                <option value="Neighour">Neighour</option>
+                                <option value="colleague">colleague</option>
+                              </select>
+                            <!-- <input type="text" class="form-control" #relation="ngModel" name="relation" [(ngModel)]="birthdayDetail.relation" placeholder="relation" required> -->
+                            <div [hidden]="relation.valid || (relation.pristine && !birthdayForm.submitted)" class="text-danger">
+                                Relation is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-7 text-right">
+                            <button type="submit" class="btn btn-primary mr-2">Save</button>
+                            <button type="button" (click)="onClickCancel()" class="btn btn-primary">Cancel</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
