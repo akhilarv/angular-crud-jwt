@@ -7,6 +7,7 @@ export class Todo {
         public middleName: string,
         public lastName: string,
         public phone: string,
-        public email: string
+        public email: string,
+        public todoImage: any
     ) { }
 }
