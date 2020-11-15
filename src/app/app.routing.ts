@@ -1,4 +1,5 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material';
 
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
