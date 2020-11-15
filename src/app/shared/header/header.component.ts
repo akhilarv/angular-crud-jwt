@@ -8,7 +8,7 @@ import { User } from '@app/_models/user';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
   currentUser: User;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
@@ -18,8 +18,5 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
-  }
-  ngOnInit() {
-
   }
 }

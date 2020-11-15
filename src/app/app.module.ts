@@ -12,7 +12,7 @@ import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
-import { SharedModules } from './shared_modules/shared.modules';
+import { SharedModules } from './shared/shared.modules';
 import { from } from 'rxjs';
 
 @NgModule({
