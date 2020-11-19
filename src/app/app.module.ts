@@ -13,6 +13,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './_components/home';
 import { LoginComponent } from './_components/login';
 import { SharedModules } from './shared/shared.modules';
+import { NgBootstrapModule } from './_components/ng-bootstrap/ng-bootstrap.module';
 import { from } from 'rxjs';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { from } from 'rxjs';
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-        SharedModules
+        SharedModules,
+        NgBootstrapModule
     ],
     declarations: [
         AppComponent,
