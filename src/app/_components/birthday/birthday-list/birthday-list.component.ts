@@ -9,7 +9,7 @@ import { BirthdayService } from '../../../_services/birthday.service';
     styleUrls: ['./birthday-list.component.scss']
 })
 export class BirthdayListComponent implements OnInit {
-    public birthdays: Birthday[] = [];
+    public birthdays: any = [];
     constructor( private router: Router, private birthdayService: BirthdayService ) { }
     
     ngOnInit() {
@@ -18,8 +18,8 @@ export class BirthdayListComponent implements OnInit {
     
     loadAllBirthdayList() {
         this.birthdayService.getAllBirthdays().subscribe(
-            birthdays => { 
-                this.birthdays = birthdays;
+            res => {
+                this.birthdays = res['data'];
             }
         );
     }
@@ -34,8 +34,11 @@ export class BirthdayListComponent implements OnInit {
     }
     
     onClickBirthdayDelete(id) {
-        this.birthdayService.deleteBirthdayDetail(id);
-        this.loadAllBirthdayList(); 
+        this.birthdayService.deleteBirthdayDetail(id)
+        .subscribe(
+            res => {
+            this.loadAllBirthdayList();
+            });
     }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 import { Todo } from '../_models/todo';
 
@@ -7,42 +8,15 @@ import { Todo } from '../_models/todo';
 export class TodoService {
 
     public todos: Todo[] = [];
+    apiURL: string = 'http://localhost/gitpro/angular-crud-jwt/src/public/todo';
 
-    constructor() { }
+    constructor(private http:HttpClient) { }
     
-    getAllTodos(): Observable<Todo[]> {
+    getAllTodos(){
 
-        if (localStorage.getItem('localData') !== null) {
-            this.todos = JSON.parse(localStorage.getItem('localData'));
-            console.log('Second');
-        } else {
-            var todoArrayData = [
-                {
-                    id: 1,
-                    title: 'Prof.',
-                    salution: 'Mr.',
-                    firstName: 'Mark',
-                    middleName: 'Jacob',
-                    lastName: 'Otto',
-                    phone: '1234567890',
-                    email: 'mark_otto@gmail.com'
-                },
-                {
-                    id: 2,
-                    title: 'Dr.',
-                    salution: 'Mr.',
-                    firstName: 'Jacob',
-                    middleName: 'Mark',
-                    lastName: 'Thornton',
-                    phone: '0987654321',
-                    email: 'jacob_thornton@gmail.com'
-                }
-            ];
-            localStorage.setItem('localData', JSON.stringify(todoArrayData));
-            this.todos = JSON.parse(localStorage.getItem('localData'));
-            console.log('First');
-        }
-        return of(this.todos);
+
+       return this.http.get('http://localhost/gitpro/angular-crud-jwt/src/public/todo');
+        
     }
 
     getTodoById(id: number): Todo {

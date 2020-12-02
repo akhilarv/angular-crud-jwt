@@ -32,15 +32,19 @@ export class BirthdayDetailComponent implements OnInit {
   }
   
   getBirthdayDetailById(id) {
-    this.birthdayDetail = this.birthdayService.getBirthdayById(parseInt(id));
-    console.log(this.birthdayDetail);  
+    this.birthdayService.getBirthdayById(parseInt(id))
+    .subscribe(res => {
+        this.birthdayDetail  = res['data'];console.log(this.birthdayDetail);
+      });
   }
   
   onBirthdaySubmitForm(form) {
-    console.log(form);
     if(form.valid) {
-        this.birthdayService.updateBirthdayById(this.birthdayDetail);
+        this.birthdayService.updateBirthdayById(this.birthdayDetail)
+        .subscribe(
+          res => {
         this.router.navigate(['/birthday-list']);
+          });
     } else {
     
     }

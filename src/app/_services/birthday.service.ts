@@ -1,77 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 import { Birthday } from '../_models/birthday';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+ })
 export class BirthdayService {
 
+    public apiUrl = 'http://localhost/gitpro/angular-crud-jwt/src/public';
     public birthdays: Birthday[] = [];
-    constructor() { }
+    constructor(private http:HttpClient) { }
   
-    getAllBirthdays(): Observable<Birthday[]> {
-
-        if(localStorage.getItem('birthdayData') !== null){ 
-            this.birthdays = JSON.parse(localStorage.getItem('birthdayData'));
-            console.log('Second');
-        } else {
-            var birthdayArrayData = [
-                {
-                    id: 1,
-                    firstName: 'Mark',
-                    lastName: 'Otto',
-                    dob: '10-10-2000',
-                    relation: 'relative'
-                },
-                {                    
-                    id: 2,
-                    firstName: 'Anoop',
-                    lastName: 'Nadesan',
-                    dob: '10-10-1984',
-                    relation: 'relative'
-                }
-            ];
-            localStorage.setItem('birthdayData', JSON.stringify(birthdayArrayData));
-            this.birthdays = JSON.parse(localStorage.getItem('birthdayData'));
-            console.log('First');
-        }       
-        return of(this.birthdays);
+    getAllBirthdays() {
+       return this.http.get('http://localhost/gitpro/angular-crud-jwt/src/public/birthday');            
     }
     
-    getBirthdayById(id: number): Birthday {
-        var birthdayArray = JSON.parse(localStorage.getItem('birthdayData'));       
-        console.log(birthdayArray);
-        return birthdayArray
-          .filter(birthday => birthday.id === id)
-          .pop();
-    }
+    getBirthdayById(id: number): any {
+        return this.http.get('http://localhost/gitpro/angular-crud-jwt/src/public/birthday?id='+id);
+       }
   
-    updateBirthdayById(birthday): Observable<Birthday> {
-        if (birthday.id === 0) {             
-            var birthdayArray = JSON.parse(localStorage.getItem('birthdayData'));
-            var birthdayid = birthdayArray.length;
-                birthday.id = ++birthdayid;
-                birthdayArray.push(birthday);
-            localStorage.setItem('birthdayData', JSON.stringify(birthdayArray));
+    updateBirthdayById(birthday) {
+        let serData =  JSON.stringify(birthday);
+        if (birthday.id === 0) {     
+            return this.http.post('http://127.0.0.1/gitpro/angular-crud-jwt/src/public/birthday', serData);
         } else {
-            var birthdaySaveArray = JSON.parse(localStorage.getItem('birthdayData'));
-            for (var i in birthdaySaveArray) {
-                if (birthdaySaveArray[i].id === birthday.id) {
-                    birthdaySaveArray[i] = birthday;
-                    localStorage.setItem('birthdayData', JSON.stringify(birthdaySaveArray));
-                }
-            }
+            return this.http.put('http://127.0.0.1/gitpro/angular-crud-jwt/src/public/birthday' , serData);
         }
-        return of(birthday);
     }
     
     deleteBirthdayDetail(id) {
-       var birthdayArray = JSON.parse(localStorage.getItem('birthdayData'));
-        for (var i in birthdayArray) {
-            if (birthdayArray[i].id === id) {
-                birthdayArray.splice(i, 1);
-                localStorage.setItem('birthdayData', JSON.stringify(birthdayArray));  
-            }
-        }    
-    };    
+        console.log(id);
+        return this.http.delete('http://127.0.0.1/gitpro/angular-crud-jwt/src/public/birthday?id='+id);
+    }    
 }

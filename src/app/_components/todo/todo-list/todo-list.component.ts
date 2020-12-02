@@ -13,7 +13,7 @@ import { tick } from '@angular/core/testing';
 })
 export class TodoListComponent implements OnInit {
 
-    displayedColumns: string[] = ['firstName','middleName','lastName', 'phone','email'];
+    displayedColumns: string[] = ['firstName','middleName','lastName', 'phone','email','actions'];
     
     public dataSource;
 
@@ -25,7 +25,7 @@ export class TodoListComponent implements OnInit {
     
     loadAllTodoList() {
         this.todoService.getAllTodos().subscribe(todos => {
-           return this.dataSource = new MatTableDataSource<Todo>(todos);
+           return this.dataSource = new MatTableDataSource<any>(todos['data']);
         });
     }
 
