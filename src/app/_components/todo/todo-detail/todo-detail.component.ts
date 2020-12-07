@@ -32,15 +32,21 @@ export class TodoDetailComponent implements OnInit {
   }
   
   getTodoDetailById(id) {
-    this.todoDetail = this.todoService.getTodoById(parseInt(id));
+     this.todoService.getTodoById(parseInt(id))
+    .subscribe(res => {
+      this.todoDetail  = res['data'];//console.log(this.birthdayDetail);
+    });
     console.log(this.todoDetail);  
   }
   
   onTodoSubmitForm(form) {
     console.log(form);
     if(form.valid) {
-        this.todoService.updateTodoById(this.todoDetail);
-        this.router.navigate(['/todo-list']);
+        this.todoService.updateTodoById(this.todoDetail)
+        .subscribe(
+          res => {
+            this.router.navigate(['/todo-list']);
+          });
     } else {
     
     }

@@ -39,7 +39,10 @@ export class TodoListComponent implements OnInit {
     }
 
     onClickTodoDelete(id) {
-        this.todoService.deleteTodoDetail(id);
-        this.loadAllTodoList();
+        this.todoService.deleteTodoDetail(id)
+        .subscribe(
+            res => {
+            this.loadAllTodoList();
+            });
     }
 }

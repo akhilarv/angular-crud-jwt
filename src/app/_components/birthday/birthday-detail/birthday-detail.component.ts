@@ -34,7 +34,7 @@ export class BirthdayDetailComponent implements OnInit {
   getBirthdayDetailById(id) {
     this.birthdayService.getBirthdayById(parseInt(id))
     .subscribe(res => {
-        this.birthdayDetail  = res['data'];console.log(this.birthdayDetail);
+        this.birthdayDetail  = res['data'];//console.log(this.birthdayDetail);
       });
   }
   

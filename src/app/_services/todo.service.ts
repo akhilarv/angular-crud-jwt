@@ -19,40 +19,20 @@ export class TodoService {
         
     }
 
-    getTodoById(id: number): Todo {
-        var todoArray = JSON.parse(localStorage.getItem('localData'));
-        console.log(todoArray);
-        return todoArray
-            .filter(todo => todo.id === id)
-            .pop();
+    getTodoById(id: number): any {
+        return this.http.get('http://localhost/gitpro/angular-crud-jwt/src/public/todo?id='+id);
     }
 
-    updateTodoById(todo): Observable<Todo> {
-        if (todo.id === 0) {
-            var todoArray = JSON.parse(localStorage.getItem('localData'));
-            var todoid = todoArray.length;
-            todo.id = ++todoid;
-            todoArray.push(todo);
-            localStorage.setItem('localData', JSON.stringify(todoArray));
+    updateTodoById(todo) {
+        let serData =  JSON.stringify(todo);
+        if (todo.id === 0) {     
+            return this.http.post('http://127.0.0.1/gitpro/angular-crud-jwt/src/public/todo', serData);
         } else {
-            var todoSaveArray = JSON.parse(localStorage.getItem('localData'));
-            for (var i in todoSaveArray) {
-                if (todoSaveArray[i].id === todo.id) {
-                    todoSaveArray[i] = todo;
-                    localStorage.setItem('localData', JSON.stringify(todoSaveArray));
-                }
-            }
+            return this.http.put('http://127.0.0.1/gitpro/angular-crud-jwt/src/public/todo' , serData);
         }
-        return of(todo);
     }
 
     deleteTodoDetail(id) {
-        var todoArray = JSON.parse(localStorage.getItem('localData'));
-        for (var i in todoArray) {
-            if (todoArray[i].id === id) {
-                todoArray.splice(i, 1);
-                localStorage.setItem('localData', JSON.stringify(todoArray));
-            }
-        }
-    };
+        return this.http.delete('http://127.0.0.1/gitpro/angular-crud-jwt/src/public/todo?id='+id);
+    }
 }
