@@ -4,15 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+import { fakeBackendProvider } from './helpers';
 
 import { AppComponent } from './app.component';
 import { appRoutingModule } from './app.routing';
 
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './_components/home';
-import { LoginComponent } from './_components/login';
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { HomeComponent } from './components/home';
+import { LoginComponent } from './components/login';
 import { SharedModules } from './shared/shared.modules';
+import { NgBootstrapModule } from './components/ng-bootstrap/ng-bootstrap.module';
 import { from } from 'rxjs';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { from } from 'rxjs';
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-        SharedModules
+        SharedModules,
+        NgBootstrapModule
     ],
     declarations: [
         AppComponent,
