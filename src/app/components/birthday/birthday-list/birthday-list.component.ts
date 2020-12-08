@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Birthday } from '../../../_models/birthday';
-import { BirthdayService } from '../../../_services/birthday.service';
+import { Birthday } from '../../../models/birthday';
+import { BirthdayService } from '../../../services/birthday.service';
 
 @Component({
     selector: 'app-birthday-list',
@@ -25,7 +25,6 @@ export class BirthdayListComponent implements OnInit {
     }
     
     onClickEditBirthdayDetail(id) {
-        console.log(id);
         this.router.navigate(['/birthday-detail'], {queryParams: {id: id}});
     }
     

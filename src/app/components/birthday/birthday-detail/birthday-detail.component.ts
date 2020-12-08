@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { BirthdayService } from '../../../_services/birthday.service';
-import { Birthday } from '../../../_models/birthday';
+import { BirthdayService } from '../../../services/birthday.service';
+import { Birthday } from '../../../models/birthday';
 
 @Component({
   selector: 'app-birthday-detail',
@@ -19,12 +19,9 @@ export class BirthdayDetailComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
           this.birthdayId = params['id'];
           if (this.birthdayId !== undefined) {
-                console.log(this.birthdayId);
                 this.getBirthdayDetailById(this.birthdayId);
                 this.mode = 'Edit';    
           } else {
-                // this.birthdayId = null;
-                console.log(this.birthdayId);
                 this.birthdayDetail['id'] = 0;
                 this.mode = 'Add';   
           }
@@ -34,7 +31,7 @@ export class BirthdayDetailComponent implements OnInit {
   getBirthdayDetailById(id) {
     this.birthdayService.getBirthdayById(parseInt(id))
     .subscribe(res => {
-        this.birthdayDetail  = res['data'];//console.log(this.birthdayDetail);
+        this.birthdayDetail  = res['data'];
       });
   }
   

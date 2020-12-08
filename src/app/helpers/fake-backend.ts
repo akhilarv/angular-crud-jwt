@@ -3,7 +3,7 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { User } from '@app/_models';
+import { User } from '@app/models';
 
 const users: User[] = [{ id: 1, username: 'akhila', password: '123', firstName: 'Akhila', lastName: 'User' }];
 

@@ -1,9 +1,9 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './_components/home';
-import { LoginComponent } from './_components/login';
-import { NgBootstrapComponent } from './_components/ng-bootstrap/ng-bootstrap.component';
-import { AuthGuard } from './_helpers';
+import { HomeComponent } from './components/home';
+import { LoginComponent } from './components/login';
+import { NgBootstrapComponent } from './components/ng-bootstrap/ng-bootstrap.component';
+import { AuthGuard } from './helpers';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -11,19 +11,19 @@ const routes: Routes = [
     { path: 'ng-bootstrap', component: NgBootstrapComponent },
     {
         path: 'todo-list',
-        loadChildren: () => import('./_components/todo/todo-list/todo-list.module').then(mod => mod.TodoListModule)
+        loadChildren: () => import('./components/todo/todo-list/todo-list.module').then(mod => mod.TodoListModule)
     },
     {
         path: 'todo-detail',
-        loadChildren: () => import('./_components/todo/todo-detail/todo-detail.module').then(mod => mod.TodoDetailModule)
+        loadChildren: () => import('./components/todo/todo-detail/todo-detail.module').then(mod => mod.TodoDetailModule)
     },
     {
         path: 'birthday-list',
-        loadChildren: () => import('./_components/birthday/birthday-list/birthday-list.module').then(mod => mod.BirthdayListModule)
+        loadChildren: () => import('./components/birthday/birthday-list/birthday-list.module').then(mod => mod.BirthdayListModule)
     },
     {
         path: 'birthday-detail',
-        loadChildren: () => import('./_components/birthday/birthday-detail/birthday-detail.module').then(mod => mod.BirthdayDetailModule)
+        loadChildren: () => import('./components/birthday/birthday-detail/birthday-detail.module').then(mod => mod.BirthdayDetailModule)
     },
     
     // otherwise redirect to home

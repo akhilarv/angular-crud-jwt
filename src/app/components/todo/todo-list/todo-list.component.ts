@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Todo } from '../../../_models/todo';
-import { TodoService } from '../../../_services/todo.service';
+import { Todo } from '../../../models/todo';
+import { TodoService } from '../../../services/todo.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { tick } from '@angular/core/testing';
@@ -30,7 +30,6 @@ export class TodoListComponent implements OnInit {
     }
 
     onClickEditTodoDetail(id) {
-        console.log(id);
         this.router.navigate(['/todo-detail'], { queryParams: { id: id } });
     }
 

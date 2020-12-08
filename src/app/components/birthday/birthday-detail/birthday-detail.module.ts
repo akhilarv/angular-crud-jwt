@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BirthdayDetailRoutingModule } from './birthday-detail-routing.module';
 import { BirthdayDetailComponent } from './birthday-detail.component';
-import { BirthdayService } from '../../../_services/birthday.service';
+import { BirthdayService } from '../../../services/birthday.service';
 
 @NgModule({
   imports: [
